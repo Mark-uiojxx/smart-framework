@@ -1,4 +1,4 @@
-package framework;
+package org.mylearn.framework;
 
 /**
  * 方法作用说明:${enclosing_method}
