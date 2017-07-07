@@ -24,4 +24,20 @@ public final class ConfigHelper {
     public static String getJdbcUsername() {
         return PropsUtil.getString(CONFIG_PROPS, ConfigConstant.JDBC_USERNAME);
     }
+
+    public static String getJdbcPassword() {
+        return PropsUtil.getString(CONFIG_PROPS, ConfigConstant.JDBC_PASSWORD);
+    }
+
+    public static String getJdbcAppBasePackage() {
+        return PropsUtil.getString(CONFIG_PROPS, ConfigConstant.APP_BASE_PACKAGE);
+    }
+
+    public static String getAppJspPath() {
+        return PropsUtil.getString(CONFIG_PROPS, ConfigConstant.APP_JSP_PATH, "/WEB-INF/view");
+    }
+
+    public static String getAppAssetPath() {
+        return PropsUtil.getString(CONFIG_PROPS, ConfigConstant.APP_ASSET_PATH, "/asset/");
+    }
 }
