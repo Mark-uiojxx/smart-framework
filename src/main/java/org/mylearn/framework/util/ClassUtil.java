@@ -49,6 +49,10 @@ public final class ClassUtil {
         return clazz;
     }
 
+    public static Class<?> loadClass(String clazzName) {
+        return loadClass(clazzName, false);
+    }
+
     /**
      * 获取指定包名下的所有的类
      */
