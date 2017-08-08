@@ -20,6 +20,7 @@ import java.util.jar.JarFile;
  * 类加载器
  * Created by mark on 2017/7/7.
  */
+//TODO 类加载器的原理？
 public final class ClassUtil {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ClassUtil.class);
@@ -51,7 +52,6 @@ public final class ClassUtil {
     /**
      * 获取指定包名下的所有的类
      */
-    //TODO  not understand ???
     public static Set<Class<?>> getClassSet(String packageName) {
         Set<Class<?>> classSet = new HashSet<Class<?>>();
         try {

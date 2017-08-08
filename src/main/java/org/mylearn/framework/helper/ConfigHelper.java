@@ -1,6 +1,5 @@
 package org.mylearn.framework.helper;
 
-import org.mylearn.framework.ConfigConstant;
 import org.mylearn.framework.util.PropsUtil;
 
 import java.util.Properties;
