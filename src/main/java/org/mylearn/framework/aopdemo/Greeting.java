@@ -5,5 +5,5 @@ package org.mylearn.framework.aopdemo;
  */
 public interface Greeting {
 
-    void sayHellod(String name);
+    void sayHello(String name);
 }

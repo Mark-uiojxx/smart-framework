@@ -3,12 +3,14 @@ package org.mylearn.framework.aopdemo;
 import net.sf.cglib.proxy.MethodProxy;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
+import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
 
 /**
  * @author mark  2017/8/9
  */
+@Component("greetingAroundAdvice")
 public class GreetingAroundAdvice implements MethodInterceptor {
 
     @Override

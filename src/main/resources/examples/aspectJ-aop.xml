@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:contex="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--注解方式-->
+    <!--<contex:component-scan base-package="org.mylearn.framework.aopdemo"/>-->
+    <!--<aop:aspectj-autoproxy proxy-target-class="true"/>-->
+    <!--注解方式-->
+
+    <!--配置方式-->
+    <bean id="greetingImpl" class="org.mylearn.framework.aopdemo.GreetingImpl"/>
+    <bean id="greetingAspect" class="org.mylearn.framework.aopdemo.GreetingAspect"/>
+
+    <aop:config>
+        <aop:aspect ref="greetingAspect">
+            <aop:around method="around" pointcut="execution(* org.mylearn.framework.aopdemo.GreetingImpl.*(..))"/>
+            <aop:declare-parents types-matching="Class" implement-interface="org.mylearn.framework.aopdemo.Apology" default-impl="org.mylearn.framework.aopdemo.ApologyImpl"/>
+        </aop:aspect>
+    </aop:config>
+    <!--配置方式-->
+
+</beans>

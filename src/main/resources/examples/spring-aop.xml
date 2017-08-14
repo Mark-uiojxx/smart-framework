@@ -12,8 +12,53 @@
         <property name="interceptorNames">
             <list>
                 <value>greetingAroundAdvice</value>
+                <value>greetingThrowAdvice</value>
             </list>
         </property>
+    </bean>
+
+    <bean id="greetingProxy_1" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <!--需要动态实现的接口-->
+        <property name="interfaces" value="org.mylearn.framework.aopdemo.Apology"/>
+        <!--目标类-->
+        <property name="target" ref="greetingImpl"/>
+        <!--引入增强-->
+        <property name="interceptorNames" value="greetingIntroAdvice"/>
+        <!--代理目标类（默认为 false，代理接口）-->
+        <property name="proxyTargetClass" value="true"/>
+    </bean>
+
+    <!--配置一个切面(正则表达式切面类)-->
+    <bean id="greetingAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+        <property name="advice" ref="greetingAroundAdvice"/>
+        <!--切点（正则表达式）-->
+        <property name="pattern" value="org.mylearn.framework.aopdemo.GreetingImpl.good.*"/>
+    </bean>
+
+    <bean id="greetingProxy_2" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="target" ref="greetingImpl"/>
+        <!--切面-->
+        <property name="interceptorNames" value="greetingAdvisor"/>
+        <property name="proxyTargetClass" value="true"/>
+    </bean>
+
+    <!--自动代理（扫描 Bean 名称）-->
+    <bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+        <!--只为后缀是“Impl”的 Bean 生成代理-->
+        <property name="beanNames" value="*Impl"/>
+        <!--增强-->
+        <property name="interceptorNames" value="greetingAroundAdvice"/>
+        <!--是否对代理生成策略进行优化-->
+        <property name="optimize" value="true"/>
+    </bean>
+
+    <!--自动代理（扫描切面配置）-->
+    <bean id="greetingAdvisor_1" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+        <property name="pattern" value="org.mylearn.framework.aopdemo.GreetingImpl.good.*"/>
+        <property name="advice" ref="greetingAroundAdvice"/>
+    </bean>
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator">
+        <property name="optimize" value="true"/>
     </bean>
 
 </beans>
